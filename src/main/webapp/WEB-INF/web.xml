@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+	<display-name>mvc</display-name>
+	
+	<!-- 서블릿 설정 / 서블릿 명, 클래스 풀네임 -->
+	<servlet>
+		<servlet-name>mvc</servlet-name>
+		<servlet-class>mvc.test.controller.HelloController</servlet-class>
+		<init-param>
+			<param-name>commandURI</param-name>
+			<param-value>C:/Program Files/sung/project-min/mvc/src/main/webapp/WEB-INF/properties/commandURI.properties</param-value>
+		</init-param>
+	</servlet>
+	
+	<!-- 서블릿 매핑 / 호출 할 서블릿 이름, 확장자 지정-->
+	<servlet-mapping>
+		<servlet-name>mvc</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
