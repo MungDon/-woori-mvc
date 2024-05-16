@@ -17,5 +17,36 @@
 		<servlet-name>mvc</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+		
+	<!-- 서블릿 설정 / 서블릿 명, 클래스 풀네임 -->	
+	<servlet>
+		<servlet-name>board</servlet-name>
+		<servlet-class>mvc.test.controller.BoardController</servlet-class>
+		<init-param>
+			<param-name>boardURI</param-name>
+			<param-value>C:/Program Files/sung/project-min/mvc/src/main/webapp/WEB-INF/properties/boardURI.properties</param-value>
+		</init-param>
+	</servlet>
 	
+	<!-- 서블릿 매핑 / 호출 할 서블릿 이름, 확장자 지정-->
+	<servlet-mapping>
+		<servlet-name>board</servlet-name>
+		<url-pattern>*.bo</url-pattern>
+	</servlet-mapping>
+	
+		<!-- 서블릿 설정 / 서블릿 명, 클래스 풀네임 -->	
+	<servlet>
+		<servlet-name>member</servlet-name>
+		<servlet-class>mvc.test.controller.MemberController</servlet-class>
+		<init-param>
+			<param-name>memberURI</param-name>
+			<param-value>C:/Program Files/sung/project-min/mvc/src/main/webapp/WEB-INF/properties/memberURI.properties</param-value>
+		</init-param>
+	</servlet>
+	
+	<!-- 서블릿 매핑 / 호출 할 서블릿 이름, 확장자 지정-->
+	<servlet-mapping>
+		<servlet-name>member</servlet-name>
+		<url-pattern>*.me</url-pattern>
+	</servlet-mapping>
 </web-app>
