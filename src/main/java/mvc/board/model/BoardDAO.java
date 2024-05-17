@@ -77,7 +77,7 @@ public class BoardDAO {
 				re_level= 0;
 			}
 			// readCount (조회수)는 직접 입력 ㄴㄴ
-			sql = "insert into board(num, writer, title, content, passwd, ref, re_step, re_level, reg) values(board_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+			sql = "insert into board(num, writer, title, content, passwd, ref, re_step, re_level, reg, img) values(board_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, sysdate, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getWriter());
 			pstmt.setString(2, dto.getTitle());
@@ -86,6 +86,7 @@ public class BoardDAO {
 			pstmt.setInt(5, ref);
 			pstmt.setInt(6, re_step);
 			pstmt.setInt(7, re_level);
+			pstmt.setString(8, dto.getImg());
 
 			result = pstmt.executeUpdate();
 		} catch(Exception e) {
@@ -175,6 +176,7 @@ public class BoardDAO {
 				dto.setRe_step(rs.getInt("re_step"));	
 				dto.setRe_level(rs.getInt("re_level"));
 				dto.setReg(rs.getTimestamp("reg"));
+				dto.setImg(rs.getString("img"));
 			}		
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -204,6 +206,7 @@ public class BoardDAO {
 				dto.setRe_step(rs.getInt("re_step"));
 				dto.setRe_level(rs.getInt("re_level"));
 				dto.setReg(rs.getTimestamp("reg"));
+				dto.setImg(rs.getString("img"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -225,13 +228,14 @@ public class BoardDAO {
 			if(rs.next()){
 				dbpw = rs.getString("passwd");
 				if(dbpw.equals(dto.getPasswd())) {
-					sql = "update board set writer=?, title=?, content=?, passwd=?  where num=? ";
+					sql = "update board set writer = ?, title = ?, content = ?, passwd = ?, img = ? where num = ?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, dto.getWriter());
 					pstmt.setString(2, dto.getTitle());
 					pstmt.setString(3, dto.getContent());
 					pstmt.setString(4, dto.getPasswd());
-					pstmt.setInt(5, dto.getNum());
+					pstmt.setString(5, dto.getImg());
+					pstmt.setInt(6, dto.getNum());
 					result = pstmt.executeUpdate();
 				}
 			}
@@ -324,5 +328,25 @@ public class BoardDAO {
 			close(conn, pstmt, rs);
 		}
 		return list;
+	}
+	public String findByImg(int num) {
+		String img = "";
+		try {
+			conn = getConn();
+			sql="select img from board where num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				img = rs.getString("img");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
+		}
+		return img;
 	}
 }

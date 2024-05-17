@@ -14,7 +14,7 @@
 
 <center><b>글쓰기</b></center>
 <br />
-<form method="post" name="writeform" action="writePro.bo">
+<form method="post" name="writeform" action="writePro.bo" enctype="multipart/form-data">
 	<input type="hidden" name="num" value="${num}">
 	<input type="hidden" name="ref" value="${ref}">
 	<input type="hidden" name="re_step" value="${re_step}">
@@ -43,6 +43,12 @@
 			<td  width="70" align="center" >글내용</td>
 			<td  width="330" >
 				<textarea name="content" rows="13" cols="40"></textarea> 
+			</td>
+		</tr>
+		<tr>
+			<td width="70" align="center" >이미지</td>
+			<td>
+				<input type="file" name="img">
 			</td>
 		</tr>
 		<tr>

@@ -1,5 +1,6 @@
 package mvc.board.action;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +18,30 @@ public class DeleteProAction implements SuperAction{
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
+		int result =0;
+		String passwd ="";
+		String filePath = request.getRealPath("resources/upload");
 		int num = Integer.parseInt(request.getParameter("num"));
 		String pageNum = request.getParameter("pageNum");
-		String passwd = request.getParameter("passwd");
+		
+		if(request.getParameter("passwd").equals("")) {
+			passwd="none";
+		}else {
+			passwd = request.getParameter("passwd");
+		}
 		BoardDAO dao = BoardDAO.getInstance();
-		int result = dao.boardDelete(num, passwd);
+		
+		
+		String img = dao.findByImg(num);
+		result = dao.boardDelete(num, passwd);
+	
+		
+		if(result==1 && !(img.equals(""))) {
+			File f = new File(filePath+"/"+img);
+				f.delete();
+		}
+
+
 		 
 		 request.setAttribute("pageNum", pageNum);
 		 request.setAttribute("result", result);

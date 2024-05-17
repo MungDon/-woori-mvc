@@ -29,7 +29,7 @@ public class BoardDTO {
     private int re_step;	// 스텝
     private int re_level;	// 레벨
 	private Timestamp reg;	// 작성날짜
-	
+	private String img;
 	public int getNum() {
 		return num;
 	}
@@ -89,5 +89,11 @@ public class BoardDTO {
 	}
 	public void setReg(Timestamp reg) {
 		this.reg = reg;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 }

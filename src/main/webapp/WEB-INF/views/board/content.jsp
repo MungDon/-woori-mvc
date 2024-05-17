@@ -39,6 +39,19 @@
 			<pre>${dto.content}</pre>
 		</td>
 	</tr>
+	<tr>
+		<td align="center" width="125">이미지</td>
+	<c:if test="${dto.img != null}">
+		<td>
+			<img src="../resources/upload/${dto.img}" width="300" height="300">
+		</td>
+	</c:if>
+	<c:if test="${dto.img == null}">
+		<td>
+			<img src="../resources/images/noimages.png" width="300" height="300">
+		</td>
+	</c:if>
+	</tr>
 	<tr height="30">      
 		<td colspan="4" align="right" >
 <c:if test="${sid != null}">
@@ -61,4 +74,4 @@
 			onclick="window.location='list.bo?pageNum=${pageNum}'" />
 		</td>
 	</tr>
-</table>    
+</table> 

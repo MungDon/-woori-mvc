@@ -22,9 +22,10 @@ public class LoginProAction implements SuperAction{
 		dto.setPw(pw);
 		boolean result = dao.loginCheck(dto);
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("sid", dto.getId());
-		
+		if(result ==  true) {
+			HttpSession session = request.getSession();
+			session.setAttribute("sid", dto.getId());
+		}
 		request.setAttribute("result", result);
 		
 		return "/WEB-INF/views/member/loginPro.jsp";

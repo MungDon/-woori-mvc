@@ -2,31 +2,38 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <h1>/board/list.jsp</h1>
-
+<video></video>
 <center><b>글목록(전체 글:${count})</b>
 <table style="width : 700">
 
-<c:if test="${sid == null}">
+
 	<tr>
+<c:if test="${sid == null}">
 		<td>
 			<a href="../member/main.me">로그인</a>
-			
 		<td>
-	</tr>
 </c:if>
 <c:if test="${sid != null}">
+		<td>
+			<a href="../member/logout.me">로그아웃</a>
+		<td>
+</c:if>
+	</tr>
+
+
 <tr>
+<c:if test="${sid != null}">
     <td align="right" >
     	<a href="writeForm.bo">글쓰기</a>
     	<a href="mylist.bo">내 글목록</a>
+    	<a href="../member/main.me">메인</a>
     </td>
-</tr>
 </c:if>
+
 </table>
 <c:if test="${count==0}">
-<table width="700" border="1" cellpadding="0" cellspacing="0">
+<table width="700" style="height: 500px;" border="1" cellpadding="0" cellspacing="0">
 	<tr>
 	    <td align="center">
 	    	<h1>게시판에 저장된 글이 없습니다.</h1>
@@ -72,7 +79,7 @@
 	</c:forEach>
 </table>
 </c:if>
-
+<div>
 <c:if test="${count > 0}">
 	<c:set var="pageCount" value="${count/pageSize+(count % pageSize == 0 ? 0 : 1)}"></c:set>
 	<c:set var="pageBlock" value="${10}"></c:set>
@@ -96,4 +103,8 @@
 		<a href="list.bo?pageNum=${startPage + 10}">[다음]</a>
 	</c:if>
 </c:if>
+</div>
 </center>
+<script>
+	alert("쿠쿠루삥뽕");
+</script>
